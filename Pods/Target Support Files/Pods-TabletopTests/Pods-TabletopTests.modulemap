@@ -1,0 +1,6 @@
+framework module Pods_TabletopTests {
+  umbrella header "Pods-TabletopTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

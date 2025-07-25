@@ -1,0 +1,6 @@
+framework module Pods_Tabletop_TabletopUITests {
+  umbrella header "Pods-Tabletop-TabletopUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
