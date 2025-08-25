@@ -9,20 +9,20 @@ import SwiftUI
 
 @main
 struct TabletopApp: App {
-    
-    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 //    @StateObject var userAuth: UserAuthModel =  UserAuthModel()
+    
+    @State private var authController = AuthController()
+    @StateObject var userInfo = UserInfoModel(name: "", email: "", username: "", password: "", profilePhoto: Image("plate"))
     
     var body: some Scene {
         WindowGroup {
 //            NavigationView {
-                AuthPage()
+            AuthPage()
+                .environment(authController)
+                .environmentObject(userInfo)
 //            }
 //            .environmentObject(userAuth)
         }
     }
-}
-
-#Preview {
-    TabletopApp()
 }

@@ -6,9 +6,163 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct SignUpView: View {
+    @Environment(\.dismiss) var dismiss
+
+    // source: https://www.youtube.com/watch?v=zGp4UFlXKR8
+    @Environment(AuthController.self) private var authController
+    @EnvironmentObject var userInfo: UserInfoModel
+    
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedImage: Image? = Image("plate")
+    @State var confirmedPassword: String = ""
+    
     var body: some View {
+        switch authController.authState {
+            case .authenticated:
+                TabBarView()
+                    .environmentObject(userInfo)
+            default:
+            ZStack {
+                Image("wood")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea(.all)
+                
+                Rectangle()
+                    .fill(Color(red: 0.55, green: 0.11, blue: 0.11))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 125)
+                    .offset(y: -255)
+                
+                VStack {
+                    ZStack {
+                        if selectedImage != Image("plate") {
+                            PhotosPicker(selection: $selectedItem, matching: .images) {
+                                selectedImage!
+                                    .resizable()
+                                    .frame(width: 200, height: 200)
+                                    .clipShape(.circle)
+                                    .padding(15)
+                            }.onChange(of: selectedItem) {
+                                Task {
+                                    selectedImage = try await selectedItem?.loadTransferable(type: Image.self)
+                                    userInfo.profilePhoto = selectedImage!
+                                }
+                            }
+                        } else {
+                            PhotosPicker(selection: $selectedItem, matching: .images) {
+                                ZStack {
+                                    Image("plate")
+                                        .resizable()
+                                        .frame(width: 225, height: 225)
+                                    Text("tap to upload \n a profile photo")
+                                        .foregroundStyle(.black)
+                                }
+                            }.onChange(of: selectedItem) {
+                                Task {
+                                    selectedImage = try await selectedItem?.loadTransferable(type: Image.self)
+                                    userInfo.profilePhoto = selectedImage!
+                                }
+                            }
+                        }
+                    }.offset(y:-70)
+                    
+                    TextField("your name", text:$userInfo.name)
+                        .frame(width: 325, height: 20)
+                        .padding(10)
+                        .background(Capsule().fill(.white))
+                        .offset(y:-50)
+                        .textInputAutocapitalization(.never)
+                    
+                    TextField("your email", text:$userInfo.email)
+                        .frame(width: 325, height: 20, alignment: .center)
+                        .padding(10)
+                        .background(Capsule().fill(.white))
+                        .offset(y:-35)
+                        .textInputAutocapitalization(.never)
+                    
+                    TextField("username", text:$userInfo.username)
+                        .frame(width: 325, height: 20, alignment: .center)
+                        .padding(10)
+                        .background(Capsule().fill(.white))
+                        .offset(y:-20)
+                        .textInputAutocapitalization(.never)
+                    
+                    SecureField("password", text:$userInfo.password)
+                        .frame(width: 325, height: 20, alignment: .center)
+                        .padding(10)
+                        .background(Capsule().fill(.white))
+                        .offset(y:-5)
+                        .textInputAutocapitalization(.never)
+                    
+                    SecureField("confirm password", text:$confirmedPassword)
+                        .frame(width: 325, height: 20, alignment: .center)
+                        .padding(10)
+                        .background(Capsule().fill(.white))
+                        .offset(y:10)
+                        .textInputAutocapitalization(.never)
+                    
+                    if !confirmedPassword.isEmpty && confirmedPassword != userInfo.password {
+                        Text("Passwords must match")
+                            .font(Font.custom("OPTIGleam-Light", size: 10))
+                            .foregroundStyle(.red)
+                            .frame(width: 325, height: 5, alignment: .leading)
+                            .offset(y:15)
+                    }
+                    
+                    NavigationLink(destination: TabBarView().environmentObject(userInfo)) {
+                        Text("sign up")
+                            .padding(.init(top: 10, leading: 130, bottom: 10, trailing: 130))
+                            .tint(.black)
+                            .background(Color(red: 0.70, green: 0.51, blue: 0.26))
+                            .clipShape(.capsule)
+                            .bold()
+                    }
+                    .offset(y:35)
+                    .disabled(userInfo.name.isEmpty || userInfo.email.isEmpty || userInfo.username.isEmpty || userInfo.password.isEmpty || confirmedPassword != userInfo.password)
+                        
+                        Text("OR")
+                            .foregroundStyle(.white)
+                            .offset(y:45)
+                        
+                        Button(action: googleSignUp) {
+                            Text("sign up with Google")
+                                .padding(10)
+                                .tint(.black)
+                                .background(.white)
+                                .clipShape(.capsule)
+                                .bold()
+                        }.offset(y:50)
+                    }
+                }
+                .environment(\.font, Font.custom("OPTIGleam-Light", size: 15))
+                .navigationBarBackButtonHidden(true)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            dismiss() // Or handle navigation path manipulation
+                        }) {
+                            HStack {
+                                Image("back-arrow")
+                                    .resizable()
+                                    .frame(width: 18, height: 18)
+                                Text("Back")
+                                    .font(Font.custom("OPTIGleam-Light", size: 15))
+                            }.foregroundStyle(.white)
+                        }
+                    }
+                }
+        }
+    }
+    
+    fileprivate func googleSignUp() {
         
     }
+}
+
+#Preview {
+    SignUpView()
 }

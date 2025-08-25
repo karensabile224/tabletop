@@ -8,95 +8,69 @@
 import SwiftUI
 
 struct TabBarView: View {
-    
-    @State var selection: Int = 2
+    @State var selection: Int = 4
+    @EnvironmentObject var userInfo: UserInfoModel
     
     // color customization (source: stackoverflow)
     init() {
-        UITabBar.appearance().backgroundColor = UIColor(red: 0.36, green: 0.15, blue: 0.06, alpha: 1.00)
-        UITabBar.appearance().unselectedItemTintColor = UIColor.white
-        UITabBar.appearance().tintColor = UIColor(red: 0.68, green: 0.51, blue: 0.26, alpha: 1.00)
+        // source: https://medium.com/@sama3l/customizing-the-default-swiftui-tabbar-colors-fonts-and-backgrounds-37e02a78b1b6
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = UIColor(red: 0.36, green: 0.15, blue: 0.06, alpha: 1.00)
+        
+        let itemAppearance = tabBarAppearance.stackedLayoutAppearance
+        itemAppearance.selected.iconColor = UIColor(red: 0.70, green: 0.51, blue: 0.26, alpha: 1.00)
+        itemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor(red: 0.70, green: 0.51, blue: 0.26, alpha: 1.00), .font: UIFont(name: "OPTIGleam-Light", size: 10)!]
+        
+        itemAppearance.normal.iconColor = UIColor.white
+        itemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(.white), .font: UIFont(name: "OPTIGleam-Light", size: 10)!]
+        
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        
+        self.selection = 2
     }
     
     var body: some View {
         TabView(selection: $selection) {
             FriendsView().tabItem {
-                if selection == 0 {
-                    Image("friends-icon")
-                } else {
-                    Image("friends-icon")
-                }
+                Image("friends-icon").renderingMode(.template)
                 Text("Friends")
-            }
+                    .bold()
+            }.tag(0)
             
             SearchView().tabItem {
-                Image("search-icon")
+                Image("search-icon").renderingMode(.template)
                 Text("Search")
-            }
+                    .bold()
+            }.tag(1)
             
             CreateView().tabItem {
-                Image("create-icon")
+                Image("create-icon").renderingMode(.template)
                 Text("Create")
-            }
+                    .bold()
+            }.tag(2)
             
             CollectionsView().tabItem {
-                Image("collections-icon")
+                Image("collections-icon").renderingMode(.template)
                 Text("Collections")
-            }
+                    .bold()
+            }.tag(3)
             
             ProfileView().tabItem {
-                Image("profile-icon")
+//                userInfo.profilePhoto
                 Text("Profile")
-            }
+                    .bold()
+            }.tag(4)
         }
+        .background(Color(red: 0.36, green: 0.15, blue: 0.06))
+        .navigationBarBackButtonHidden(true)
         .tint(Color(red: 0.68, green: 0.51, blue: 0.26))
-        .tabViewStyle(.sidebarAdaptable);
-        
+        .tabViewStyle(.sidebarAdaptable)
+        .environmentObject(userInfo)
     }
 }
-    
+
 #Preview {
     TabBarView()
 }
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        UITabBar.appearance().backgroundColor = UIColor(red: 0.36, green: 0.15, blue: 0.06, alpha: 1.00)        // dark brown background
-//        
-//        // setting custom tab bar colors using helper function below
-//        // source: https://www.dice.com/career-advice/using-uitabbarappearance-tab-bar-changes-ios-13
-//        let appearance = UITabBarAppearance()
-//        setTabBarItemColors(appearance.stackedLayoutAppearance)
-//        setTabBarItemColors(appearance.inlineLayoutAppearance)
-//        setTabBarItemColors(appearance.compactInlineLayoutAppearance)
-//        
-//        self.viewControllers = [
-//            createNavController(for: FeedViewController(), title: "Friends", image: UIImage(named: "friends-icon")!),
-//            createNavController(for: SearchViewController(), title: "Search", image: UIImage(named: "search-icon")!),
-//            createNavController(for: PlateViewController(), title: "Create", image: UIImage(named: "post-icon")!),
-//            createNavController(for: CollectionsViewController(), title: "Collections", image: UIImage(named: "collections-icon")!),
-//            createNavController(for: ProfileViewController(), title: "Profile", image: nil)]
-//        
-//        self.selectedViewController = viewControllers![2]
-//    }
-//    
-//    @available(iOS 13.0, *)
-//        private func setTabBarItemColors(_ itemAppearance: UITabBarItemAppearance) {
-//            itemAppearance.normal.iconColor = .white
-//            itemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-//            
-//            itemAppearance.selected.iconColor = UIColor(red: 0.68, green: 0.51, blue: 0.26, alpha: 1.00)
-//            itemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.68, green: 0.51, blue: 0.26, alpha: 1.00)]
-//        }
-//    
-//    // populate tab bar with child views (source: medium.com)
-//    fileprivate func createNavController(for rootViewController: UIViewController, title: String, image: UIImage?) -> UIViewController {
-//        let navController = UINavigationController(rootViewController: rootViewController)
-//        if image != nil {
-//            navController.tabBarItem.image = image
-//        }
-//        navController.tabBarItem.title = title
-//        navController.tabBarItem.badgeColor = UIColor(red: 0.68, green: 0.51, blue: 0.26, alpha: 1.00)
-//        return navController
-//    }
-

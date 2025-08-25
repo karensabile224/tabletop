@@ -6,8 +6,6 @@ target 'Tabletop' do
   use_frameworks!
 
   # Pods for Tabletop
-  pod "GoogleSignIn"
-  pod "GoogleSignInSwiftSupport"
 
   target 'TabletopTests' do
     inherit! :search_paths

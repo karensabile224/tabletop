@@ -9,8 +9,11 @@ import SwiftUI
 
 struct FriendsView: View {
     var body: some View {
-        VStack {
-            Text("Test")
+        ZStack {
+            Image("wood")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea(.all)
         }
     }
         

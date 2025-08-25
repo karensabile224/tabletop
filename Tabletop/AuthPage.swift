@@ -6,68 +6,63 @@
 //
 
 import SwiftUI
-import GoogleSignIn
 
 struct AuthPage: View {
-//    @EnvironmentObject var vm: UserAuthModel
+    @EnvironmentObject var userInfo: UserInfoModel
     
     var body: some View {
-        ZStack {
-            Image("wood")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .ignoresSafeArea(.all)
-            
-            Rectangle()
-                .fill(Color(red: 0.55, green: 0.11, blue: 0.11))
-                .frame(maxWidth: .infinity)
-                .frame(height: 200)
-                .offset(y: -70)
-            
-            VStack {
-                ZStack {
-                    Image("plate")
-                        .resizable()
-                        .frame(width: 350, height: 350, alignment: .center);
+        NavigationStack {
+            ZStack {
+                Image("wood")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea(.all)
+                
+                Rectangle()
+                    .fill(Color(red: 0.55, green: 0.11, blue: 0.11))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 200)
+                    .offset(y: -110)
+                
+                VStack {
+                    ZStack {
+                        Image("plate")
+                            .resizable()
+                            .frame(width: 350, height: 350, alignment: .center)
+                        
+                        Text("t a b l e t o p")
+                            .font(Font.custom("OPTIGleam-Light", size: 40))
+                            .bold()
+                    }.offset(y:-50)
                     
-                    Text("t a b l e t o p")
-                        .font(Font.custom("OPTIGleam-Light", size: 40))
-                        .bold()
+                    NavigationLink {
+                        LoginView()
+                            .environmentObject(userInfo)
+                    } label: {
+                        Text("log in")
+                            .padding(.init(top: 10, leading: 130, bottom: 10, trailing: 130))
+                            .tint(.black)
+                            .background(.white)
+                            .clipShape(.capsule)
+                            .font(Font.custom("OPTIGleam-Light", size: 15))
+                            .bold()
+                    }
+                    
+                    NavigationLink {
+                        SignUpView()
+                            .environmentObject(userInfo)
+                    } label: {
+                        Text("sign up")
+                            .padding(.init(top: 10, leading: 125, bottom: 10, trailing: 125))
+                            .tint(.black)
+                            .background(Color(red: 0.70, green: 0.51, blue: 0.26))
+                            .clipShape(.capsule)
+                            .font(Font.custom("OPTIGleam-Light", size: 15))
+                            .bold()
+                    }.offset(y:15)
                 }
-                
-                NavigationLink {
-                    LoginView()
-                } label: {
-                    Text("log in")
-                        .padding(.init(top: 10, leading: 130, bottom: 10, trailing: 130))
-                        .tint(.black)
-                        .background(.white)
-                        .clipShape(.capsule)
-                        .font(Font.custom("OPTIGleam-Light", size: 15))
-                        .bold()
-                }.offset(y:30)
-                
-                NavigationLink {
-                    SignUpView()
-                } label: {
-                    Text("sign up")
-                        .padding(.init(top: 10, leading: 125, bottom: 10, trailing: 125))
-                        .tint(.black)
-                        .background(Color(red: 0.68, green: 0.51, blue: 0.26))
-                        .clipShape(.capsule)
-                        .font(Font.custom("OPTIGleam-Light", size: 15))
-                        .bold()
-                }.offset(y:40)
             }
-        };
-    }
-    
-    fileprivate func login() {
-        
-    }
-    
-    fileprivate func signup() {
-        
+        }
     }
 }
 
