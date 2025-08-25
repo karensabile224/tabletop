@@ -30,37 +30,7 @@ struct EditProfileView: View {
                 .offset(y: -225)
             
             VStack {
-                ZStack {
-                    if selectedImage != Image("plate") {
-                        PhotosPicker(selection: $selectedItem, matching: .images) {
-                            selectedImage!
-                                .resizable()
-                                .frame(width: 200, height: 200)
-                                .clipShape(.circle)
-                                .padding(15)
-                        }.onChange(of: selectedItem) {
-                            Task {
-                                selectedImage = try await selectedItem?.loadTransferable(type: Image.self)
-                                userInfo.profilePhoto = selectedImage!
-                            }
-                        }
-                    } else {
-                        PhotosPicker(selection: $selectedItem, matching: .images) {
-                            ZStack {
-                                Image("plate")
-                                    .resizable()
-                                    .frame(width: 225, height: 225)
-                                Text("tap to upload \n a profile photo")
-                                    .foregroundStyle(.black)
-                            }
-                        }.onChange(of: selectedItem) {
-                            Task {
-                                selectedImage = try await selectedItem?.loadTransferable(type: Image.self)
-                                userInfo.profilePhoto = selectedImage!
-                            }
-                        }
-                    }
-                }.offset(y:-70)
+                SelectionImagePicker()
                 
                 Text("Name")
                     .frame(width: 325, height: 20, alignment: .leading)

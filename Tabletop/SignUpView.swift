@@ -38,37 +38,8 @@ struct SignUpView: View {
                     .offset(y: -255)
                 
                 VStack {
-                    ZStack {
-                        if selectedImage != Image("plate") {
-                            PhotosPicker(selection: $selectedItem, matching: .images) {
-                                selectedImage!
-                                    .resizable()
-                                    .frame(width: 200, height: 200)
-                                    .clipShape(.circle)
-                                    .padding(15)
-                            }.onChange(of: selectedItem) {
-                                Task {
-                                    selectedImage = try await selectedItem?.loadTransferable(type: Image.self)
-                                    userInfo.profilePhoto = selectedImage!
-                                }
-                            }
-                        } else {
-                            PhotosPicker(selection: $selectedItem, matching: .images) {
-                                ZStack {
-                                    Image("plate")
-                                        .resizable()
-                                        .frame(width: 225, height: 225)
-                                    Text("tap to upload \n a profile photo")
-                                        .foregroundStyle(.black)
-                                }
-                            }.onChange(of: selectedItem) {
-                                Task {
-                                    selectedImage = try await selectedItem?.loadTransferable(type: Image.self)
-                                    userInfo.profilePhoto = selectedImage!
-                                }
-                            }
-                        }
-                    }.offset(y:-70)
+                    // give user option to upload profile photo from camera or photo library
+                    SelectionImagePicker()
                     
                     TextField("your name", text:$userInfo.name)
                         .frame(width: 325, height: 20)
