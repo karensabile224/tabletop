@@ -1,6 +1,7 @@
 //
 //  UserProfile.swift
 //  Tabletop
+//  Model to represent / store user information.
 //
 //  Created by Karen Sabile on 8/23/25.
 //

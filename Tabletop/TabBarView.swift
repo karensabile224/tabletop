@@ -1,10 +1,10 @@
 //
 //  ViewController.swift
 //  Tabletop
+//  View for navigation between Tabletop tabs.
 //
 //  Created by Karen Sabile on 7/14/25.
 //
-//  View for navigation between Tabletop tabs.
 
 import SwiftUI
 

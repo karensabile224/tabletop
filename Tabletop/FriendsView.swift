@@ -1,6 +1,7 @@
 //
 //  FeedViewController.swift
 //  Tabletop
+//  View for users to scroll through their friends' posts.
 //
 //  Created by Karen Sabile on 7/22/25.
 //

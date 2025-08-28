@@ -1,10 +1,10 @@
 //
 //  SignUpView.swift
 //  Tabletop
+//  View for new users to create a new Tabletop account.
 //
 //  Created by Karen Sabile on 7/23/25.
 //
-//  View for users to create a new Tabletop account.
 
 import SwiftUI
 

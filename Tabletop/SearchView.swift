@@ -1,6 +1,7 @@
 //
 //  SearchViewController.swift
 //  Tabletop
+//  View for users to discover & save new recipes to their collections.
 //
 //  Created by Karen Sabile on 7/22/25.
 //

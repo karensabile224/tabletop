@@ -1,6 +1,7 @@
 //
 //  CollectionsViewController.swift
 //  Tabletop
+//  View for showing users their collections of saved recipes.
 //
 //  Created by Karen Sabile on 7/22/25.
 //

@@ -1,10 +1,10 @@
 //
 //  EditProfileView.swift
 //  Tabletop
+//  View for editing user profile information.
 //
 //  Created by Karen Sabile on 8/23/25.
 //
-//  View for editing user profile information.
 
 import SwiftUI
 

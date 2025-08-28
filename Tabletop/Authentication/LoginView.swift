@@ -1,6 +1,7 @@
 //
 //  LoginView.swift
 //  Tabletop
+//  View for users to sign in to an existing Tabletop account.
 //
 //  Created by Karen Sabile on 7/23/25.
 //

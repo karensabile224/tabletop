@@ -1,10 +1,10 @@
 //
 //  CameraView.swift
 //  Tabletop
+//  View that enables users to upload a profile photo via their phone camera.
 //
 //  Created by Karen Sabile on 8/25/25.
 //
-//  View that enables users to upload a profile photo via their phone camera.
 
 import SwiftUI
 

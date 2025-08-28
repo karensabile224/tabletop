@@ -1,6 +1,7 @@
 //
 //  PlateViewController.swift
 //  Tabletop
+//  View for users to upload new posts to their feed.
 //
 //  Created by Karen Sabile on 7/22/25.
 //

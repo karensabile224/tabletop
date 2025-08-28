@@ -1,6 +1,7 @@
 //
 //  TabletopApp.swift
 //  Tabletop
+//  Main file for launching Tabletop app.
 //
 //  Created by Karen Sabile on 7/22/25.
 //
@@ -9,9 +10,6 @@ import SwiftUI
 
 @main
 struct TabletopApp: App {
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-//    @StateObject var userAuth: UserAuthModel =  UserAuthModel()
-    
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
@@ -20,12 +18,9 @@ struct TabletopApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            NavigationView {
             AuthView()
                 .environment(authController)
                 .environmentObject(userInfo)
-//            }
-//            .environmentObject(userAuth)
         }
     }
 }
