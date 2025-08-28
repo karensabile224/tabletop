@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(AuthController.self) private var authController
     @EnvironmentObject var userInfo: UserInfoModel
 
     @State private var username: String = ""
@@ -120,7 +121,13 @@ struct LoginView: View {
     }
     
     fileprivate func googleLogin() {
-        
+        Task {
+            do {
+                try await authController.signIn()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

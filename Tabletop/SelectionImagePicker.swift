@@ -4,6 +4,7 @@
 //
 //  Created by Karen Sabile on 8/25/25.
 //
+//  View that gives users the option to delete their current profile photo or upload a new one via the camera or photo library.
 
 import SwiftUI
 import PhotosUI

@@ -4,17 +4,14 @@
 //
 //  Created by Karen Sabile on 8/23/25.
 //
+//  View for editing user profile information.
 
 import SwiftUI
-import PhotosUI
 
 struct EditProfileView: View {
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userInfo: UserInfoModel
-    
-    @State private var selectedItem: PhotosPickerItem?
-    @State private var selectedImage: Image? = Image("plate")
     
     var body: some View {
         ZStack {

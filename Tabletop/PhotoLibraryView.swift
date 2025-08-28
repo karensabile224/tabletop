@@ -4,6 +4,7 @@
 //
 //  Created by Karen Sabile on 8/25/25.
 //
+//  View that enables users to upload a profile photo from their photo library.
 
 import SwiftUI
 import PhotosUI

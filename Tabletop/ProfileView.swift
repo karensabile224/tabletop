@@ -4,6 +4,7 @@
 //
 //  Created by Karen Sabile on 7/22/25.
 //
+//  View for accessing and/or editing user profile information.
 
 import SwiftUI
 

@@ -12,13 +12,16 @@ struct TabletopApp: App {
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 //    @StateObject var userAuth: UserAuthModel =  UserAuthModel()
     
+    // register app delegate for Firebase setup
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     @State private var authController = AuthController()
     @StateObject var userInfo = UserInfoModel(name: "", email: "", username: "", password: "", profilePhoto: Image("plate"))
     
     var body: some Scene {
         WindowGroup {
 //            NavigationView {
-            AuthPage()
+            AuthView()
                 .environment(authController)
                 .environmentObject(userInfo)
 //            }

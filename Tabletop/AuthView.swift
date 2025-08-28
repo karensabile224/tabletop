@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AuthPage: View {
+struct AuthView: View {
     @EnvironmentObject var userInfo: UserInfoModel
     
     var body: some View {
@@ -67,5 +67,5 @@ struct AuthPage: View {
 }
 
 #Preview {
-    AuthPage()
+    AuthView()
 }

@@ -8,10 +8,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>668356534396-0pa6sipbr8mp0q4ddaa9fbvh9dacccdc.apps.googleusercontent.com</string>
+			<string>Firebase Auth</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.668356534396-0pa6sipbr8mp0q4ddaa9fbvh9dacccdc</string>
+				<string>com.googleusercontent.apps.407220273015-iog2chdvabcagdhsekm1gvb2j5292fa1</string>
 			</array>
 		</dict>
 	</array>

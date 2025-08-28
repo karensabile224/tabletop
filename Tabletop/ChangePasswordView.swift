@@ -4,6 +4,7 @@
 //
 //  Created by Karen Sabile on 8/24/25.
 //
+//  View for changing user password.
 
 import SwiftUI
 
