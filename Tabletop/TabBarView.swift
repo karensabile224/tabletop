@@ -21,10 +21,10 @@ struct TabBarView: View {
         
         let itemAppearance = tabBarAppearance.stackedLayoutAppearance
         itemAppearance.selected.iconColor = UIColor(red: 0.70, green: 0.51, blue: 0.26, alpha: 1.00)
-        itemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor(red: 0.70, green: 0.51, blue: 0.26, alpha: 1.00), .font: UIFont(name: "OPTIGleam-Light", size: 10)!]
+        itemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor(red: 0.70, green: 0.51, blue: 0.26, alpha: 1.00), .font: UIFont(name: "ProximaNova-Light", size: 10)!]
         
         itemAppearance.normal.iconColor = UIColor.white
-        itemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(.white), .font: UIFont(name: "OPTIGleam-Light", size: 10)!]
+        itemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(.white), .font: UIFont(name: "ProximaNova-Light", size: 10)!]
         
         UITabBar.appearance().standardAppearance = tabBarAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance

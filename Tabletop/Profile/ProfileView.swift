@@ -37,14 +37,14 @@ struct ProfileView: View {
                         Text("@" + userInfo.username)
                             .frame(width: 350, height: 20, alignment: .center)
                             .foregroundStyle(.white)
-                            .font(Font.custom("OPTIGleam-Light", size: 18))
+                            .font(Font.custom("Proxima Nova Light", size: 18))
                             .offset(y: -30)
                         
                         NavigationLink(destination: EditProfileView()) {
                             Text("edit profile")
                                 .frame(width: 125, height: 25, alignment: .center)
                                 .background(Capsule().fill(.white))
-                                .font(Font.custom("OPTIGleam-Light", size: 15))
+                                .font(Font.custom("Proxima Nova Light", size: 15))
                         }.offset(y: 20)
                     }
                 }

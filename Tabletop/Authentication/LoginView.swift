@@ -39,7 +39,7 @@ struct LoginView: View {
                         .frame(width: 275, height: 275, alignment: .center);
                     
                     Text("t a b l e t o p")
-                        .font(Font.custom("OPTIGleam-Light", size: 25))
+                        .font(Font.custom("OPTIGleam-Light", size: 32))
                         .bold()
                 }.offset(y:-80)
                 
